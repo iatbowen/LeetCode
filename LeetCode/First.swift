@@ -22,20 +22,24 @@ class First {
         print("4.找出两个正序数组的中位数: \(findMedianSortedArrays([1,2], [3,4]))")
         print("5.最长回文子串：\(longestPalindrome("babaab"))")
         print("6.Z 字形变换：\(convert("PAYPALISHIRING", 3))")
+        print("7.整数反转：\(reverse(-123))")
+        print("8.字符串转换整数:\(myAtoi("-1337c0d3"))")
+        print("9.回文数:\(isPalindrome(1221))")
+        print("10.正则表达式匹配:\(isMatch("mississppi", "mis*is*p*."))")
     }
     
     // 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
-       var dict = Dictionary<Int, Int>()
-       for (index, num1) in nums.enumerated() {
-           let num2 = target - num1
-           if let idx = dict[num2] {
-               return [idx, index]
-           }
-           dict[num1] = index
-       }
-       return []
-   }
+        var dict = Dictionary<Int, Int>()
+        for (index, num1) in nums.enumerated() {
+            let num2 = target - num1
+            if let idx = dict[num2] {
+                return [idx, index]
+            }
+            dict[num1] = index
+        }
+        return []
+    }
     
     // 给你两个 非空 的链表，它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。请你将两个数相加，并以相同形式返回一个表示和的链表。
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
@@ -160,4 +164,98 @@ class First {
         return string
     }
     
+    // 给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
+    func reverse(_ x: Int) -> Int {
+        var res = 0
+        var temp = x
+        if x < 0 {
+            temp = -x
+        }
+        while temp > 0 {
+            res = res * 10 + temp % 10;
+            temp /= 10
+        }
+        if res > Int32.max || res < Int32.min {
+            return 0
+        }
+        if x < 0 {
+            return -res
+        }
+        return res
+    }
+    
+    // 请你来实现一个 myAtoi(string s) 函数，使其能将字符串转换成一个 32 位有符号整数。
+    func myAtoi(_ s: String) -> Int {
+        let str = Array(s)
+        var i = 0
+        let n = str.count
+        // 1. 跳过前面的空格
+        while i < n && str[i] == " " {
+            i += 1
+        }
+        // 2. 确定符号
+        var sign = 1
+        if i < n {
+            if str[i] == "-" {
+                sign = -1
+                i += 1
+            } else if str[i] == "+" {
+                i += 1
+            }
+        }
+        // 3. 读取数字
+        var num = 0
+        while i < n, let d = str[i].wholeNumberValue {
+            num = num * 10 + d
+            // 4. 检查溢出
+            if sign == 1 && num >= Int32.max {
+                return Int(Int32.max)
+            }
+            if sign == -1 && (sign * num) <= Int32.min {
+                return Int(Int32.min)
+            }
+            i += 1
+        }
+        return sign * num
+    }
+    
+    // 给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+    func isPalindrome(_ x: Int) -> Bool {
+        var res = 0
+        var temp = x;
+        while temp > 0 {
+            res = res * 10 + temp % 10;
+            temp /= 10
+        }
+        return res == x
+    }
+    
+    // 给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。'.' 匹配任意单个字符，'*' 匹配零个或多个前面的那一个元素
+    func isMatch(_ s: String, _ p: String) -> Bool {
+        // 为了方便下标访问，将字符串转换为字符数组
+        let sArr = Array(s)
+        let pArr = Array(p)
+        // 定义递归辅助函数
+        func match(_ si: Int, _ pi: Int) -> Bool {
+            // 如果模式字符串已经用完，看主串是否也用完
+            if pi == pArr.count {
+                return si == sArr.count
+            }
+            // 判断当前字符是否匹配：
+            // 1. si 不能越界
+            // 2. 模式字符等于字符串字符或为'.'
+            let currMatch = (si < sArr.count) && (pArr[pi] == "." || sArr[si] == pArr[pi])
+            // 判断模式串下一个是否为'*'
+            if (pi + 1 < pArr.count) && (pArr[pi + 1] == "*") {
+                // '*'可以表示出现0次：跳过模式中的前一字符加'*'
+                // 或者，当前匹配，则让字符串向后移动一位，但模式不动，继续尝试匹配当前模式（用'*'再匹配一次）
+                return match(si, pi + 2) || (currMatch && match(si + 1, pi))
+            } else {
+                // 若不是'*'，那就一步一步地比较当前字符，然后递归到下一个
+                return currMatch && match(si + 1, pi + 1)
+            }
+        }
+        // 从头开始匹配
+        return match(0, 0)
+    }
 }
