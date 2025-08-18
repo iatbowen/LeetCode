@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5470C4512E52FAD30061E926 /* First.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44C2E52FAD30061E926 /* First.swift */; };
+		5470C4522E52FAD30061E926 /* Second.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44F2E52FAD30061E926 /* Second.swift */; };
+		5470C4532E52FAD30061E926 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44E2E52FAD30061E926 /* Mode.swift */; };
+		5470C4542E52FAD30061E926 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44D2E52FAD30061E926 /* main.swift */; };
+		5470C4582E52FBA10061E926 /* Third.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C4572E52FBA10061E926 /* Third.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		54E4476C2E4C383D00A777AC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -19,16 +27,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5470C44C2E52FAD30061E926 /* First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = First.swift; sourceTree = "<group>"; };
+		5470C44D2E52FAD30061E926 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5470C44E2E52FAD30061E926 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		5470C44F2E52FAD30061E926 /* Second.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Second.swift; sourceTree = "<group>"; };
+		5470C4572E52FBA10061E926 /* Third.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Third.swift; sourceTree = "<group>"; };
 		54E4476E2E4C383D00A777AC /* LeetCode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCode; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		54E447702E4C383D00A777AC /* LeetCode */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = LeetCode;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		54E4476B2E4C383D00A777AC /* Frameworks */ = {
@@ -41,10 +46,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5470C4502E52FAD30061E926 /* LeetCode */ = {
+			isa = PBXGroup;
+			children = (
+				5470C4562E52FB210061E926 /* Data */,
+				5470C4552E52FAEC0061E926 /* Algorithm */,
+				5470C44D2E52FAD30061E926 /* main.swift */,
+			);
+			path = LeetCode;
+			sourceTree = "<group>";
+		};
+		5470C4552E52FAEC0061E926 /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				5470C44C2E52FAD30061E926 /* First.swift */,
+				5470C44F2E52FAD30061E926 /* Second.swift */,
+				5470C4572E52FBA10061E926 /* Third.swift */,
+			);
+			path = Algorithm;
+			sourceTree = "<group>";
+		};
+		5470C4562E52FB210061E926 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5470C44E2E52FAD30061E926 /* Mode.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		54E447652E4C383D00A777AC = {
 			isa = PBXGroup;
 			children = (
-				54E447702E4C383D00A777AC /* LeetCode */,
+				5470C4502E52FAD30061E926 /* LeetCode */,
 				54E4476F2E4C383D00A777AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,9 +104,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				54E447702E4C383D00A777AC /* LeetCode */,
 			);
 			name = LeetCode;
 			packageProductDependencies = (
@@ -121,6 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5470C4582E52FBA10061E926 /* Third.swift in Sources */,
+				5470C4512E52FAD30061E926 /* First.swift in Sources */,
+				5470C4522E52FAD30061E926 /* Second.swift in Sources */,
+				5470C4532E52FAD30061E926 /* Mode.swift in Sources */,
+				5470C4542E52FAD30061E926 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

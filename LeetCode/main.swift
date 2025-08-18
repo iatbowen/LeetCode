@@ -8,4 +8,5 @@
 import Foundation
 
 _ = First()
-
+_ = Second()
+_ = Third()
