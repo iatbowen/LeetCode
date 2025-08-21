@@ -10,22 +10,22 @@ import Foundation
 class First {
     
     init() {
-        print("1.两数之和：\(twoSum([2,7,11,15], 9))")
+        print("1. 两数之和：\(twoSum([2,7,11,15], 9))")
         let l1 = ListNode(2)
         l1.next = ListNode(4)
         l1.next?.next = ListNode(3)
         let l2 = ListNode(5)
         l2.next = ListNode(6)
         l2.next?.next = ListNode(4)
-        print("2.两数相加：\(addTwoNumbers(l1, l2)!.print())")
-        print("3.无重复字符的最长子串：\(longestSubstring("abcabbb"))")
-        print("4.找出两个正序数组的中位数: \(findMedianSortedArrays([1,2], [3,4]))")
-        print("5.最长回文子串：\(longestPalindrome("babaab"))")
-        print("6.Z 字形变换：\(convert("PAYPALISHIRING", 3))")
-        print("7.整数反转：\(reverse(-123))")
-        print("8.字符串转换整数:\(myAtoi("-1337c0d3"))")
-        print("9.回文数:\(isPalindrome(1221))")
-        print("10.正则表达式匹配:\(isMatch("mississppi", "mis*is*p*."))")
+        print("2. 两数相加：\(addTwoNumbers(l1, l2)!.print())")
+        print("3. 无重复字符的最长子串：\(longestSubstring("abcabbb"))")
+        print("4. 找出两个正序数组的中位数: \(findMedianSortedArrays([1,2], [3,4]))")
+        print("5. 最长回文子串：\(longestPalindrome("babaab"))")
+        print("6. Z 字形变换：\(convert("PAYPALISHIRING", 3))")
+        print("7. 整数反转：\(reverse(-123))")
+        print("8. 字符串转换整数:\(myAtoi("-1337c0d3"))")
+        print("9. 回文数:\(isPalindrome(1221))")
+        print("10. 正则表达式匹配:\(isMatch("mississppi", "mis*is*p*."))")
     }
     
     // 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。

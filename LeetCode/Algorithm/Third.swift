@@ -15,18 +15,31 @@ class Third {
         let l2 = ListNode(2)
         l2.next = ListNode(4)
         l2.next?.next = ListNode(6)
-        print("21.合并两个有序链表:\(String(describing: mergeTwoLists(l1, l2)?.print()))")
-        print("22.括号生成:\(generateParenthesis(3))")
+        print("21. 合并两个有序链表:\(String(describing: mergeTwoLists(l1, l2)?.print()))")
+        print("22. 括号生成:\(generateParenthesis(3))")
         let n1 = ListNode(1)
         n1.next = ListNode(3)
         n1.next?.next = ListNode(5)
+        n1.next?.next?.next = ListNode(10)
         let n2 = ListNode(2)
         n2.next = ListNode(4)
         n2.next?.next = ListNode(6)
         let n3 = ListNode(7)
         n3.next = ListNode(8)
         n3.next?.next = ListNode(9)
-        print("23.合并 K 个升序链表:\(String(describing: mergeKLists([n1, n2, n3])?.print()))")
+        print("23. 合并 K 个升序链表:\(String(describing: mergeKLists([n1, n2, n3])?.print()))")
+        let ln = ListNode(1)
+        ln.next = ListNode(2)
+        ln.next?.next = ListNode(3)
+        ln.next?.next?.next = ListNode(4)
+        print("24. 两两交换链表中的节点:\(String(describing: swapPairs(ln)?.print()))")
+        var array = [1,2,3,4,1,2,3,4]
+        _ = removeDuplicates(&array)
+        print("26. 删除有序数组中的重复项:\(array)")
+        _ = removeElement(&array, 2)
+        print("27. 移除元素:\(array)")
+        print("28. 找出字符串中第一个匹配项的下标:\(String(describing: findFirstMatchIndex("sadbutsad", "sad")))")
+        print("29. 两数相除:\(divide(10, 3))")
     }
     
     // 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
@@ -86,4 +99,123 @@ class Third {
         }
         return merge(0, lists.count - 1)
     }
+    
+    // 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+    func swapPairs(_ head: ListNode?) -> ListNode? {
+        let h = ListNode(0, head)
+        var p: ListNode? = h
+        while p?.next != nil && p?.next?.next != nil {
+            let n1 = p?.next
+            let n2 = p?.next?.next
+            p?.next = n2
+            n1?.next = n2?.next
+            n2?.next = n1
+            p = n1
+        }
+        return h.next
+    }
+    
+    // 删除有序数组中的重复项
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+        var array = Array<Int>()
+        for num in nums {
+            if (array.contains(num)) {
+                continue
+            }
+            array.append(num)
+        }
+        nums = array
+        return nums.count
+    }
+    
+    // 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。
+    // 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作：
+    // 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。
+    // 返回 k
+    func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+        var index = 0
+        for num in nums {
+            if num != val {
+                nums[index] = num
+                index += 1
+            }
+        }
+        return index
+    }
+    
+    // 给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串的第一个匹配项的下标（下标从 0 开始）。如果 needle 不是 haystack 的一部分，则返回  -1 。
+    func findFirstMatchIndex(_ haystack: String, _ needle: String) -> Int? {
+        // 如果needle为空，返回0
+        if needle.isEmpty {
+            return 0
+        }
+        // 如果haystack长度小于needle，肯定不匹配
+        if haystack.count < needle.count {
+            return -1
+        }
+        let haystackChars = Array(haystack)
+        let needleChars = Array(needle)
+        // 遍历haystack
+        for i in 0...(haystackChars.count - needleChars.count) {
+            var match = true
+            // 检查当前位置开始的子串是否匹配needle
+            for j in 0..<needleChars.count {
+                if haystackChars[i + j] != needleChars[j] {
+                    match = false
+                    break
+                }
+            }
+            if match {
+                return i
+            }
+        }
+        return -1
+    }
+    
+    /*
+     给你两个整数，被除数 dividend 和除数 divisor。将两数相除，要求 不使用 乘法、除法和取余运算。
+     整数除法应该向零截断，也就是截去（truncate）其小数部分。例如，8.345 将被截断为 8 ，-2.7335 将被截断至 -2 。
+     返回被除数 dividend 除以除数 divisor 得到的 商 。
+     */
+    func divide(_ dividend: Int, _ divisor: Int) -> Int {
+        // 处理除数为0的情况
+        if divisor == 0 {
+            fatalError("除数不能为0")
+        }
+        
+        // 处理被除数为0的情况
+        if dividend == 0 {
+            return 0
+        }
+        
+        // 判断结果的正负号
+        let isNegative = (dividend < 0) != (divisor < 0)
+        
+        // 转换为正数处理
+        var absDividend = abs(dividend)
+        let absDivisor = abs(divisor)
+        
+        var result = 0
+        
+        // 通过减法实现除法
+        while absDividend >= absDivisor {
+            absDividend -= absDivisor
+            result += 1
+        }
+        
+        // 应用符号
+        result = isNegative ? -result : result
+        
+        // 处理32位整数溢出情况
+        // Swift中Int是平台相关的，这里假设题目要求32位范围
+        if result > Int32.max {
+            return Int(Int32.max)
+        }
+        if result < Int32.min {
+            return Int(Int32.min)
+        }
+        return result
+    }
+
+
 }

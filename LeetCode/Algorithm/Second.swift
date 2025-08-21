@@ -9,19 +9,19 @@ import Foundation
 
 class Second {
     init() {
-        print("11.盛最多水的容器:\(maxArea([1,8,6,2,5,4,8,3,7]))")
-        print("12.整数转罗马数字:\(intToRoman(3749))")
-        print("13.罗马数字转整数:\(romanToInt("MCMXCIV"))")
-        print("14.最长公共前缀:\(longestCommonPrefix(["flower","flow","flight"]))")
-        print("15.三数之和:\(threeSum([-1,0,1,2,-1,-4]))")
-        print("16.最接近的三数之和:\(threeSumClosest([-1,2,1,-4], 1))")
-        print("17.电话号码的字母组合:\(letterCombinations("24"))")
-        print("18.四数之和:\(fourSum([1,0,-1,0,-2,2], 0))")
+        print("11. 盛最多水的容器:\(maxArea([1,8,6,2,5,4,8,3,7]))")
+        print("12. 整数转罗马数字:\(intToRoman(3749))")
+        print("13. 罗马数字转整数:\(romanToInt("MCMXCIV"))")
+        print("14. 最长公共前缀:\(longestCommonPrefix(["flower","flow","flight"]))")
+        print("15. 三数之和:\(threeSum([-1,0,1,2,-1,-4]))")
+        print("16. 最接近的三数之和:\(threeSumClosest([-1,2,1,-4], 1))")
+        print("17. 电话号码的字母组合:\(letterCombinations("24"))")
+        print("18. 四数之和:\(fourSum([1,0,-1,0,-2,2], 0))")
         let l1 = ListNode(2)
         l1.next = ListNode(3)
         l1.next?.next = ListNode(4)
-        print("19.删除链表的倒数第 N 个结点:\(String(describing: removeNthFromEnd(l1, 2)?.print()))")
-        print("20.有效的括号:\(isValid("{()[]{}}"))")
+        print("19. 删除链表的倒数第 N 个结点:\(String(describing: removeNthFromEnd(l1, 2)?.print()))")
+        print("20. 有效的括号:\(isValid("{()[]{}}"))")
     }
     
     // 双指针法: 给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。

@@ -10,3 +10,7 @@ import Foundation
 _ = First()
 _ = Second()
 _ = Third()
+_ = Fourth()
+_ = Fifth()
+_ = Sixth()
+_ = Seventh()

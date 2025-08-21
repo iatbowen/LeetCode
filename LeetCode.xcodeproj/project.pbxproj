@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54700BCA2E549A420061E926 /* Fifth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54700BC92E549A420061E926 /* Fifth.swift */; };
+		54700BCC2E559CD20061E926 /* Sixth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54700BCB2E559CD20061E926 /* Sixth.swift */; };
+		54700BCE2E55C3350061E926 /* Seventh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54700BCD2E55C3350061E926 /* Seventh.swift */; };
 		5470C4512E52FAD30061E926 /* First.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44C2E52FAD30061E926 /* First.swift */; };
 		5470C4522E52FAD30061E926 /* Second.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44F2E52FAD30061E926 /* Second.swift */; };
 		5470C4532E52FAD30061E926 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44E2E52FAD30061E926 /* Mode.swift */; };
 		5470C4542E52FAD30061E926 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44D2E52FAD30061E926 /* main.swift */; };
 		5470C4582E52FBA10061E926 /* Third.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C4572E52FBA10061E926 /* Third.swift */; };
+		5470DBE62E546B450061E926 /* Fourth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470DBE52E546B450061E926 /* Fourth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,11 +31,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		54700BC92E549A420061E926 /* Fifth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fifth.swift; sourceTree = "<group>"; };
+		54700BCB2E559CD20061E926 /* Sixth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sixth.swift; sourceTree = "<group>"; };
+		54700BCD2E55C3350061E926 /* Seventh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seventh.swift; sourceTree = "<group>"; };
 		5470C44C2E52FAD30061E926 /* First.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = First.swift; sourceTree = "<group>"; };
 		5470C44D2E52FAD30061E926 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5470C44E2E52FAD30061E926 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		5470C44F2E52FAD30061E926 /* Second.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Second.swift; sourceTree = "<group>"; };
 		5470C4572E52FBA10061E926 /* Third.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Third.swift; sourceTree = "<group>"; };
+		5470DBE52E546B450061E926 /* Fourth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fourth.swift; sourceTree = "<group>"; };
 		54E4476E2E4C383D00A777AC /* LeetCode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCode; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,6 +70,10 @@
 				5470C44C2E52FAD30061E926 /* First.swift */,
 				5470C44F2E52FAD30061E926 /* Second.swift */,
 				5470C4572E52FBA10061E926 /* Third.swift */,
+				5470DBE52E546B450061E926 /* Fourth.swift */,
+				54700BC92E549A420061E926 /* Fifth.swift */,
+				54700BCB2E559CD20061E926 /* Sixth.swift */,
+				54700BCD2E55C3350061E926 /* Seventh.swift */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -152,9 +164,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5470C4582E52FBA10061E926 /* Third.swift in Sources */,
+				5470DBE62E546B450061E926 /* Fourth.swift in Sources */,
 				5470C4512E52FAD30061E926 /* First.swift in Sources */,
+				54700BCA2E549A420061E926 /* Fifth.swift in Sources */,
+				54700BCE2E55C3350061E926 /* Seventh.swift in Sources */,
 				5470C4522E52FAD30061E926 /* Second.swift in Sources */,
 				5470C4532E52FAD30061E926 /* Mode.swift in Sources */,
+				54700BCC2E559CD20061E926 /* Sixth.swift in Sources */,
 				5470C4542E52FAD30061E926 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
