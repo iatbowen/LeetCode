@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		545839DC2E58120B0007EEBF /* Ninth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545839DB2E58120B0007EEBF /* Ninth.swift */; };
+		5458526B2E5C62210007EEBF /* Tenth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5458526A2E5C62210007EEBF /* Tenth.swift */; };
 		54700BCA2E549A420061E926 /* Fifth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54700BC92E549A420061E926 /* Fifth.swift */; };
 		54700BCC2E559CD20061E926 /* Sixth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54700BCB2E559CD20061E926 /* Sixth.swift */; };
 		54700BCE2E55C3350061E926 /* Seventh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54700BCD2E55C3350061E926 /* Seventh.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		545839DB2E58120B0007EEBF /* Ninth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ninth.swift; sourceTree = "<group>"; };
+		5458526A2E5C62210007EEBF /* Tenth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenth.swift; sourceTree = "<group>"; };
 		54700BC92E549A420061E926 /* Fifth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fifth.swift; sourceTree = "<group>"; };
 		54700BCB2E559CD20061E926 /* Sixth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sixth.swift; sourceTree = "<group>"; };
 		54700BCD2E55C3350061E926 /* Seventh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seventh.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				54700BCD2E55C3350061E926 /* Seventh.swift */,
 				547066B92E56F4530061E926 /* Eighth.swift */,
 				545839DB2E58120B0007EEBF /* Ninth.swift */,
+				5458526A2E5C62210007EEBF /* Tenth.swift */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				545839DC2E58120B0007EEBF /* Ninth.swift in Sources */,
 				5470C4522E52FAD30061E926 /* Second.swift in Sources */,
 				5470C4532E52FAD30061E926 /* Mode.swift in Sources */,
+				5458526B2E5C62210007EEBF /* Tenth.swift in Sources */,
 				54700BCC2E559CD20061E926 /* Sixth.swift in Sources */,
 				5470C4542E52FAD30061E926 /* main.swift in Sources */,
 			);
