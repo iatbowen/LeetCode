@@ -255,7 +255,7 @@ class Sixth {
     // 给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中 最后一个 单词的长度。
     func lengthOfLastWord(_ s: String) -> Int {
         var end = s.count - 1
-        var chars = Array(s)
+        let chars = Array(s)
         while end >= 0 && chars[end] == " " {
             end -= 1
         }

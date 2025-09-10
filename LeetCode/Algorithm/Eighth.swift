@@ -49,33 +49,45 @@ class Eighth {
      你可以对一个单词进行如下三种操作：插入一个字符、删除一个字符、替换一个字符
      */
     func minDistance(_ word1: String, _ word2: String) -> Int {
-        let m = word1.count + 1
-        let n = word2.count + 1
+        let m = word1.count + 1    // dp的行数（比word1多一行，考虑到空串情况）
+        let n = word2.count + 1    // dp的列数（比word2多一列）
+        // 初始化二维数组
         var dp = Array(repeating:Array(repeating: 0, count: n), count: m)
+        // 初始化 dp[i][0]: word1 前 i 个字符变成空串的距离
         var i = 1
         while i < m {
             dp[i][0] = i
             i += 1
         }
+        // 初始化 dp[0][j]: 空串变成 word2 前 j 个字符的距离
         var j = 1
         while j < n {
             dp[0][j] = j
             j += 1
         }
+        // 将字符串变为字符数组，方便索引
         let chars1 = Array(word1)
         let chars2 = Array(word2)
+        // 动态规划填表
         i = 1
         while i < m {
             j = 1
             while j < n {
-                dp[i][j] = min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1])) + 1;
+                // 先三种操作都算一遍：替换、删除、插入
+                dp[i][j] = min(
+                    dp[i - 1][j - 1], // 替换
+                    min(dp[i - 1][j], // 删除
+                        dp[i][j - 1]) // 插入
+                ) + 1
+                // 如果字符相同，则不需要操作
                 if (chars1[i - 1] == chars2[j - 1]) {
-                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1]);
+                    dp[i][j] = min(dp[i][j], dp[i - 1][j - 1])
                 }
                 j += 1
             }
             i += 1
         }
+        // 返回最终答案：word1全部变成word2的最小编辑距离
         return dp[m-1][n-1]
     }
     
@@ -177,7 +189,14 @@ class Eighth {
         }
     }
     
-    // 滑动窗口：给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。
+    /*
+     滑动窗口：给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。
+     算法思想：滑动窗口+哈希表（双指针+频次统计+区间压缩）
+     在 s 上维护一个区间 [left, right)，表示当前选中的子串。
+     不断向右拓展 right，使窗口包含尽可能多 t 的字符。
+     当窗口已包含所有 t 的字符后，开始收缩 left，去掉不必要的字符，尝试缩短窗口长度。
+     整个过程中实时记录满足条件的最小窗口。
+     */
     func minWindow(_ s: String, _ t: String) -> String {
         let sArr = [Character](s)
         // 窗口的字典
@@ -221,7 +240,7 @@ class Eighth {
                 let lChar = sArr[left]
                 left += 1
                 if needDict[lChar] == nil { continue }
-                // 如果当前左端字符的窗口中数量和所需数量相等，则后续移动就不满足匹配了，匹配数-1
+                // 如果当前左端字符的窗口中数量和所需数量相等，则后续移动就不满足匹配了，匹配数-1，退出循环
                 if needDict[lChar] == windowDict[lChar] {
                     matchCnt -= 1
                 }
@@ -236,8 +255,8 @@ class Eighth {
     func combine(_ n: Int, _ k: Int) -> [[Int]] {
         var res = Array<Array<Int>>()
         var paths = Array<Int>()
-        dfsNums(n, k, &paths, 1, &res);
-        func dfsNums(_ n: Int, _ k:Int, _ paths: inout [Int], _ depth: Int, _ res: inout [[Int]]) {
+        dfsNums(n, &paths, 1, &res);
+        func dfsNums(_ n: Int, _ paths: inout [Int], _ depth: Int, _ res: inout [[Int]]) {
             if paths.count == k {
                 res.append(paths)
                 return
@@ -245,7 +264,7 @@ class Eighth {
             var i = depth
             while i <= n {
                 paths.append(i)
-                dfsNums(n, k, &paths, i + 1, &res)
+                dfsNums(n, &paths, i + 1, &res)
                 paths.removeLast()
                 i += 1
             }

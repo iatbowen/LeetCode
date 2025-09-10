@@ -253,8 +253,8 @@ class First {
             let currMatch = (si < sArr.count) && (pArr[pi] == "." || sArr[si] == pArr[pi])
             // 判断模式串下一个是否为'*'
             if (pi + 1 < pArr.count) && (pArr[pi + 1] == "*") {
-                // match(si, pi + 2)：匹配0次，跳过模式中的前一字符加'*'
-                // (currMatch && match(si + 1, pi))：匹配1次或多次，当前匹配，则让字符串向后移动一位，但模式不动，继续尝试匹配当前模式（用'*'再匹配一次）
+                // '*'可以表示出现0次：跳过模式中的前一字符加'*'
+                // 或者，当前匹配，则让字符串向后移动一位，但模式不动，继续尝试匹配当前模式（用'*'再匹配一次）
                 return match(si, pi + 2) || (currMatch && match(si + 1, pi))
             } else {
                 // 若不是'*'，那就一步一步地比较当前字符，然后递归到下一个

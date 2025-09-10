@@ -32,7 +32,7 @@ class Fourth {
         var board1: [[Character]] = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]
         solveSudoku(&board1)
         print("37. 解数独:\(board1)")
-        print("38. 外观数列:\(countAndSay(4))")
+        print("38. 外观数列:\(countAndSay(1))")
         print("39. 组合总和:\(combinationSum([2,5,2,1,2], 5))")
         print("40. 组合总和2:\(combinationSum2([2,5,2,1,2], 5))")
     }
@@ -149,17 +149,17 @@ class Fourth {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
         var left = 0
         var right = nums.count - 1
-        var res = nums.count
+        var index = nums.count
         while left <= right {
             let mid = (left + right) / 2
             if nums[mid] >= target {
-                res = mid
+                index = mid
                 right = mid - 1
             } else {
                 left = mid + 1
             }
         }
-        return res
+        return index
     }
     
     // 请你判断一个 9 x 9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
@@ -196,6 +196,7 @@ class Fourth {
     }
     
     /**
+     https://zhuanlan.zhihu.com/p/310286600
     编写一个程序，通过填充空格来解决数独问题。
     数独的解法需 遵循如下规则：
     数字 1-9 在每一行只能出现一次。
@@ -241,24 +242,33 @@ class Fourth {
     // 将连续相同字符（重复两次或更多次）替换为字符重复次数（运行长度）和字符的串联
     // 给定一个整数 n ，返回 外观数列 的第 n 个元素。
     func countAndSay(_ n: Int) -> String {
+        var result = "1"
         if n == 1 {
-            return "1"
+            return result
         }
-        func readString(_ string: String) -> String {
-            var str = String()
-            let chars = Array(string)
-            var start = 0
-            while start < chars.count {
-                var end = start
-                while end + 1 < chars.count && chars[start] == chars[end+1] {
-                    end += 1
+        // 从第2项开始，每次都"读出"当前项
+        for _ in 2...n {
+            result = readNumber(result)
+        }
+        // 读出数字：统计连续相同字符的个数
+        func readNumber(_ s: String) -> String {
+            var result = ""
+            let chars = Array(s)
+            var i = 0
+            while i < chars.count {
+                let currentChar = chars[i]
+                var count = 1
+                // 统计连续相同字符
+                while i + count < chars.count && chars[i + count] == currentChar {
+                    count += 1
                 }
-                str += String(end - start + 1) + String(chars[start])
-                start = end + 1
+                // 格式：个数 + 字符
+                result += "\(count)\(currentChar)"
+                i += count
             }
-            return str
+            return result
         }
-        return readString(countAndSay(n-1))
+        return result
     }
     
     // 给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。
@@ -274,6 +284,7 @@ class Fourth {
                 return
             }
             if target == 0 {
+                // 由于 Swift 中的 Array 是值类型，所以每次 append 的时候都会创建一个新的副本
                 result.append(path)
                 return
             }

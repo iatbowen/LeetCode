@@ -106,7 +106,7 @@ class Ninth {
         // 在末尾添加0，保证所有柱子都会被弹出
         let newHeights = heights + [0]
         for (i, h) in newHeights.enumerated() {
-            // 当前柱子比栈顶的柱子矮，需要弹栈并计算面积
+            // 遍历，当前柱子比栈顶的柱子矮，一直弹栈并计算面积
             while let last = stack.last, h < newHeights[last] {
                 let height = newHeights[stack.removeLast()]
                 // 如果栈为空，宽度就是i，否则宽度是 右边界 - (左边界 + 1)
@@ -205,7 +205,7 @@ class Ninth {
     }
     
     /*
-     https://leetcode.cn/problems/subsets-ii/
+     https://leetcode.cn/problems/subsets-ii/solutions/690866/90-zi-ji-iiche-di-li-jie-zi-ji-wen-ti-ru-djmf/
      给你一个整数数组 nums ，其中可能包含重复元素，请你返回该数组所有可能的 子集（幂集）。
      解集 不能 包含重复的子集。返回的解集中，子集可以按 任意顺序 排列。
      */

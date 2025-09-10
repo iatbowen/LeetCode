@@ -19,6 +19,7 @@
 		5470C4542E52FAD30061E926 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C44D2E52FAD30061E926 /* main.swift */; };
 		5470C4582E52FBA10061E926 /* Third.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470C4572E52FBA10061E926 /* Third.swift */; };
 		5470DBE62E546B450061E926 /* Fourth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470DBE52E546B450061E926 /* Fourth.swift */; };
+		54B16EA12E704E1B008D4BCE /* Eleventh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B16EA02E704E1B008D4BCE /* Eleventh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,7 @@
 		5470C44F2E52FAD30061E926 /* Second.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Second.swift; sourceTree = "<group>"; };
 		5470C4572E52FBA10061E926 /* Third.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Third.swift; sourceTree = "<group>"; };
 		5470DBE52E546B450061E926 /* Fourth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fourth.swift; sourceTree = "<group>"; };
+		54B16EA02E704E1B008D4BCE /* Eleventh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eleventh.swift; sourceTree = "<group>"; };
 		54E4476E2E4C383D00A777AC /* LeetCode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCode; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,6 +85,7 @@
 				547066B92E56F4530061E926 /* Eighth.swift */,
 				545839DB2E58120B0007EEBF /* Ninth.swift */,
 				5458526A2E5C62210007EEBF /* Tenth.swift */,
+				54B16EA02E704E1B008D4BCE /* Eleventh.swift */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				5470C4532E52FAD30061E926 /* Mode.swift in Sources */,
 				5458526B2E5C62210007EEBF /* Tenth.swift in Sources */,
 				54700BCC2E559CD20061E926 /* Sixth.swift in Sources */,
+				54B16EA12E704E1B008D4BCE /* Eleventh.swift in Sources */,
 				5470C4542E52FAD30061E926 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

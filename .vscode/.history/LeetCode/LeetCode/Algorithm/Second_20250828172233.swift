@@ -248,7 +248,7 @@ class Second {
         return h.next
     }
     
-    // 栈+字典：给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+    // 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
     func isValid(_ s: String) -> Bool {
         let pairs:[Character: Character] = ["(": ")", "[": "]", "{": "}"]
         let letters = Array(s)

@@ -36,6 +36,12 @@ public class TreeNode {
         self.left = left
         self.right = right
     }
+    
+}
+
+func preorderTraversal(_ root: TreeNode?) -> [Int] {
+    guard let root = root else { return [] }
+    return [root.val] + preorderTraversal(root.left) + preorderTraversal(root.right)
 }
  
  

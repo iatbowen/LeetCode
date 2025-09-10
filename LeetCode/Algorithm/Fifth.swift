@@ -23,6 +23,7 @@ class Fifth {
     }
     
     // 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+    // 对于一个长度为 N 的数组，其中没有出现的最小正整数只能在 [1,N+1] 中。这是因为如果 [1,N] 都出现了，那么答案是 N+1
     func firstMissingPositive(_ nums: [Int]) -> Int {
         var nums = nums
         //！为了将负数剔除，我们优先将其置换成 越界的数，长度为n的数组，最小缺失正整数要么在[1, n]，要么刚好是n+1
@@ -31,7 +32,7 @@ class Fifth {
                 nums[i] = nums.count + 1
             }
         }
-        //！ 使用index索引标记已经出现过的 [1, n] 区间内的正数。
+        //！已经出现过的 [1, n] 区间内的正数，使用index索引标记。
         for i in 0..<nums.count {
             let num = Int(abs(nums[i]))
             if num <= nums.count {
@@ -83,6 +84,7 @@ class Fifth {
         return sum
     }
     
+    // 给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
     func multiply(_ num1: String, _ num2: String) -> String {
         // 把字符串转成字符数组，方便按位操作
         let chars1 = Array(num1)
@@ -119,6 +121,12 @@ class Fifth {
         return string
     }
     
+    /*
+     给你一个输入字符串 (s) 和一个字符模式 (p) ，请你实现一个支持 '?' 和 '*' 匹配规则的通配符匹配：
+     '?' 可以匹配任何单个字符。
+     '*' 可以匹配任意字符序列（包括空字符序列）。
+     判定匹配成功的充要条件是：字符模式必须能够 完全匹配 输入字符串（而不是部分匹配）。
+     */
     func isMatch(_ s: String, _ p: String) -> Bool {
         guard !p.isEmpty else {
             return s.isEmpty

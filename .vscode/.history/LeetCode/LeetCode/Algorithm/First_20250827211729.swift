@@ -73,6 +73,7 @@ class First {
     初始“窗口”就像一块色块覆盖着字符串，从左到右扩展，遇到重复字符后右移startIndex，窗口右边继续向右扩展。
     每次扩展时，窗口的内容是无重复的。遇到重复时，窗口的“左侧”跳到重复字符后一位，移除之前的重叠。
     当前窗口长度如果比最大长度大则记下来。
+
     */
     func longestSubstring(_ s: String) -> String {
         let chars = Array(s)
@@ -253,8 +254,8 @@ class First {
             let currMatch = (si < sArr.count) && (pArr[pi] == "." || sArr[si] == pArr[pi])
             // 判断模式串下一个是否为'*'
             if (pi + 1 < pArr.count) && (pArr[pi + 1] == "*") {
-                // match(si, pi + 2)：匹配0次，跳过模式中的前一字符加'*'
-                // (currMatch && match(si + 1, pi))：匹配1次或多次，当前匹配，则让字符串向后移动一位，但模式不动，继续尝试匹配当前模式（用'*'再匹配一次）
+                // '*'可以表示出现0次：跳过模式中的前一字符加'*'
+                // 或者，当前匹配，则让字符串向后移动一位，但模式不动，继续尝试匹配当前模式（用'*'再匹配一次）
                 return match(si, pi + 2) || (currMatch && match(si + 1, pi))
             } else {
                 // 若不是'*'，那就一步一步地比较当前字符，然后递归到下一个

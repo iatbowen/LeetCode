@@ -36,6 +36,19 @@ class Tenth {
     }
     
     // 给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
+    /*
+     头插法：
+     Original: 1 -> 2 -> 3 -> 4 -> 5 -> null
+     pHead -> 1 -> 2 -> 3 -> 4 -> 5 -> null
+              ^    ^
+             pre  current
+     pHead -> 1 -> 3 -> 2 -> 4 -> 5 -> null
+              ^    ^    ^
+             pre  next current
+     pHead -> 1 -> 4 -> 3 -> 2 -> 5 -> null
+              ^    ^         ^
+             pre  next    current
+     */
     func reverseBetween(_ head: ListNode?, _ left: Int, _ right: Int) -> ListNode? {
         let pHead: ListNode? = ListNode(0, head)
         var pre = pHead
@@ -56,14 +69,38 @@ class Tenth {
         }
         return pHead?.next
     }
-    
-    // 有效 IP 地址 正好由四个整数（每个整数位于 0 到 255 之间组成，且不能含有前导 0），整数之间用 '.' 分隔。
-    // https://leetcode.cn/problems/restore-ip-addresses/solutions/1/hui-su-suan-fa-hua-tu-fen-xi-jian-zhi-tiao-jian-by/
+    /*
+     有效 IP 地址 正好由四个整数（每个整数位于 0 到 255 之间组成，且不能含有前导 0），整数之间用 '.' 分隔。
+     https://leetcode.cn/problems/restore-ip-addresses/solutions/1/hui-su-suan-fa-hua-tu-fen-xi-jian-zhi-tiao-jian-by/
+     核心思路:
+     尝试将字符串分割成4段
+     每段长度为1-3个字符
+     每段必须是有效的IP段（0-255，不能有前导零）
+     推演：
+     "25525511135"
+     ├─ "2" + 剩余 "5525511135"
+     │  ├─ "2.5" + 剩余 "525511135"
+     │  │  ├─ "2.5.5" + 剩余 "25511135" → 太长
+     │  │  └─ "2.5.52" + 剩余 "5511135" → 太长
+     │  └─ "2.55" + 剩余 "25511135"
+     │     └─ "2.55.255" + 剩余 "11135" → 太长
+     ├─ "25" + 剩余 "525511135"
+     │  └─ ... (类似分析)
+     └─ "255" + 剩余 "25511135"
+        ├─ "255.2" + 剩余 "5511135" → 太长
+        ├─ "255.25" + 剩余 "511135" → 太长
+        └─ "255.255" + 剩余 "11135"
+           ├─ "255.255.1" + 剩余 "1135" → 太长
+           ├─ "255.255.11" + 剩余 "135" ✓
+           │  └─ "255.255.11.135" ✓ 成功！
+           └─ "255.255.111" + 剩余 "35" ✓
+              └─ "255.255.111.35" ✓ 成功！
+     */
     func restoreIpAddresses(_ s: String) -> [String] {
         var res = [String]()
         let sArr = Array(s)
+        // idx 当前正在处理字符串位置
         func dfs(_ idx: Int, _ path: [String]) {
-            print(path)
             // 已经分成4段并且用完所有字符
             if path.count == 4 && idx == sArr.count {
                 res.append(path.joined(separator: "."))
@@ -73,7 +110,10 @@ class Tenth {
             if path.count >= 4 { return }
             // 每段最大长度
             for len in 1...3 {
-                if idx + len > sArr.count { break }
+                // 处理越界情况
+                if idx + len > sArr.count {
+                    break
+                }
                 let segment = String(sArr[idx..<(idx+len)])
                 // 首位不能为0，除非单独一个"0"，且数字要 ≤ 255
                 if (segment.count > 1 && segment.first == "0") || (Int(segment)! > 255) {
@@ -86,7 +126,9 @@ class Tenth {
         return res
     }
     
-    // 左子树 → 根节点 → 右子树
+    /*
+     二叉树的中序遍历:左子树 → 根节点 → 右子树
+     */
     func inorderTraversal1(_ root: TreeNode?) -> [Int] {
         var result = [Int]()
         func inorder(_ node: TreeNode?) {
@@ -124,8 +166,34 @@ class Tenth {
         - 它的左子树上所有节点的值都小于当前节点的值。
         - 它的右子树上所有节点的值都大于当前节点的值。
         - 左子树和右子树本身也是二叉搜索树。
-     给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。
+     
+     核心原理
+     分治思想：对于区间[start, end]内的节点
+     选择任意节点i作为根节点
+     左子树：包含[start, i-1]的所有BST
+     右子树：包含[i+1, end]的所有BST
+     组合：左子树 × 右子树的所有组合
+          
+     generateTrees(1, 3)
+     ├─ i=1 (根节点1)
+     │  ├─ leftTrees = generateTrees(1, 0) → [nil]
+     │  └─ rightTrees = generateTrees(2, 3)
+     │     ├─ i=2 (根节点2)
+     │     │  ├─ leftTrees = generateTrees(2, 1) → [nil]
+     │     │  └─ rightTrees = generateTrees(3, 3) → [TreeNode(3)]
+     │     └─ i=3 (根节点3)
+     │        ├─ leftTrees = generateTrees(2, 2) → [TreeNode(2)]
+     │        └─ rightTrees = generateTrees(4, 3) → [nil]
+     ├─ i=2 (根节点2)
+     │  ├─ leftTrees = generateTrees(1, 1) → [TreeNode(1)]
+     │  └─ rightTrees = generateTrees(3, 3) → [TreeNode(3)]
+     └─ i=3 (根节点3)
+        ├─ leftTrees = generateTrees(1, 2)
+        │  ├─ i=1: left=[nil], right=[TreeNode(2)]
+        │  └─ i=2: left=[TreeNode(1)], right=[nil]
+        └─ rightTrees = generateTrees(4, 3) → [nil]
      */
+    // 给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。
     func generateTrees(_ n: Int) -> [TreeNode?] {
         if n == 0 {
             return []
@@ -159,14 +227,21 @@ class Tenth {
         }
         return generateTrees(from: 1, to: n)
     }
-    
-    // 给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。
+    /*
+     核心思想
+     对于i个节点(1到i)，选择任意节点j作为根节点：
+     左子树：包含节点{1, 2, ..., j-1}，共(j-1)个节点
+     右子树：包含节点{j+1, j+2, ..., i}，共(i-j)个节点
+     
+     给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。
+     */
     func numTrees(_ n: Int) -> Int {
         // dp[i]表示有i个节点的BST个数
         var dp = [Int](repeating: 0, count: n+1)
         dp[0] = 1
         dp[1] = 1
         if n <= 1 { return 1 }
+        // 按顺序计算dp[2], dp[3], ..., dp[n]
         for i in 2...n {
             // 每个以j为根的组合数：左子树j-1个，右子树i-j个
             for j in 1...i {

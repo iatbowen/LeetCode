@@ -175,7 +175,7 @@ class Seventh {
         var m = aChars.count - 1, n = bChars.count - 1
         var res = Array<Int>()
         var flag = 0
-        while m >= 0 || n >= 0{
+        while m >= 0 || n >= 0 {
             var sum = flag
             if m >= 0 {
                 sum += aChars[m].wholeNumberValue!
@@ -200,30 +200,44 @@ class Seventh {
     
     // 给你一个非负整数 x ，计算并返回 x 的 算术平方根 。
     func mySqrt(_ x: Int) -> Int {
+        // 如果 x 是 0 或 1，平方根就是其本身，直接返回
         if x == 0 || x == 1 {
             return x
         }
+        // 初始化二分查找的左右边界
         var left = 0, right = x, ans = -1
+        // 二分查找，查找 x 的整数平方根
         while left <= right {
+            // 找到中间值，防止溢出可以写 left + (right - left)/2，但是这里直接除以2没关系
             let mid = (left + right) / 2
+            // 检查mid的平方是否小于等于x
             if mid * mid <= x {
+                // 如果是，把mid暂存为答案，并收缩左边界
                 ans = mid
                 left = mid + 1
             } else {
+                // 如果mid的平方大于x，收缩右边界
                 right = mid - 1
             }
         }
+        // 返回最后的答案
         return ans
     }
     
     /*
      假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
      每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+     
+     状态转移方程： dp[i] = dp[i-1] + dp[i-2]
+     要到第 i 阶，有两种方式：
+     从第 i-1 阶爬 1 步上来（方法数为 dp[i-1]）
+     从第 i-2 阶爬 2 步上来（方法数为 dp[i-2]）
      */
     func climbStairs(_ n: Int) -> Int {
         if n == 1 {
             return 1
         }
+        // 楼梯总共有 n 阶，但下标从 0 到 n 都需要表示，总共 n+1 个元素
         var dp = Array(repeating: 0, count: n+1)
         dp[0] = 1
         dp[1] = 1
