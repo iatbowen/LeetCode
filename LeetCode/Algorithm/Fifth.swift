@@ -9,7 +9,7 @@ import Foundation
 
 class Fifth {
     init() {
-        print("41. 缺失的第一个正数:\(firstMissingPositive([8,3,4,-1,1]))")
+        print("41. 缺失的第一个正数:\(firstMissingPositive([3,2,1]))")
         print("42. 接雨水:\(trap([4,2,0,3,2,5]))")
         print("43. 字符串相乘:\(multiply("12", "12"))")
         print("44. 通配符匹配:\(isMatch("abcd", "a*d"))")
@@ -32,7 +32,7 @@ class Fifth {
                 nums[i] = nums.count + 1
             }
         }
-        //！已经出现过的 [1, n] 区间内的正数，使用index索引标记。
+        //！已经出现过的 [1, n] 区间内的正数，使用index索引标记。使用绝对值即使后续的值被改动，也不影响后续位置的判断
         for i in 0..<nums.count {
             let num = Int(abs(nums[i]))
             if num <= nums.count {

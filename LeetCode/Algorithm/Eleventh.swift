@@ -24,6 +24,7 @@ class Eleventh {
         print("105. 从前序与中序遍历序列构造二叉树:\(preorderTraversal(buildTree([3,9,20,15,7], [9,3,15,20,7])))")
         print("106. 从中序与后序遍历序列构造二叉树:\(preorderTraversal(buildTreeOptimized([9,3,15,20,7], [9,15,7,20,3])))")
         print("144. 二叉树的前序遍历: \(preorderTraversalStack(root))")
+        print("145. 二叉树的后序遍历: \(postorderTraversalIterative(root))")
         print("146. LRU 缓存: \(cache())")
         print("198. 打家劫舍:\(rob([1,2,3,1]))")
         print("225. 用队列实现栈:")
@@ -219,6 +220,34 @@ class Eleventh {
         return result
     }
     
+    /*
+     栈法
+     后续遍历：左子树 -> 右子树 -> 根节点
+     
+     给你一棵二叉树的根节点 root ，返回其节点值的 后序遍历 。
+     */
+    func postorderTraversalIterative(_ root: TreeNode?) -> [Int] {
+        guard let root = root else { return [] }
+        
+        var result: [Int] = []
+        var stack: [TreeNode] = [root]
+        
+        while !stack.isEmpty {
+            let node = stack.removeLast()
+            result.insert(node.val, at: 0)  // 在结果数组开头插入
+            
+            // 先压入左子树，再压入右子树
+            // 因为我们要在结果开头插入，所以顺序相反
+            if let left = node.left {
+                stack.append(left)
+            }
+            if let right = node.right {
+                stack.append(right)
+            }
+        }
+        return result
+    }
+    
     func cache() -> [Int] {
         // 简化版本 - 使用数组实现
         class LRUCache {
@@ -275,35 +304,7 @@ class Eleventh {
         lru.put(3, 3)
         return lru.objects()
     }
-    
-    /*
-     栈法
-     后续遍历：左子树 -> 右子树 -> 根节点
-     
-     给你一棵二叉树的根节点 root ，返回其节点值的 后序遍历 。
-     */
-    func postorderTraversalIterative(_ root: TreeNode?) -> [Int] {
-        guard let root = root else { return [] }
         
-        var result: [Int] = []
-        var stack: [TreeNode] = [root]
-        
-        while !stack.isEmpty {
-            let node = stack.removeLast()
-            result.insert(node.val, at: 0)  // 在结果数组开头插入
-            
-            // 先压入左子树，再压入右子树
-            // 因为我们要在结果开头插入，所以顺序相反
-            if let left = node.left {
-                stack.append(left)
-            }
-            if let right = node.right {
-                stack.append(right)
-            }
-        }
-        return result
-    }
-    
     /*
      你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
      给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。
